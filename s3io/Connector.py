@@ -4,8 +4,8 @@ Amazon S3 bucket connector wrapper
 """
 
 import math
-import sys, os
-import getopt
+# import sys, os
+# import getopt
 import boto
 import boto.s3.connection
 from filechunkio import FileChunkIO
@@ -23,13 +23,16 @@ class Connector:
     def __init__(self, access_key, secret_key):
         self.access_key = access_key
         self.secret_key = secret_key
-        self.connection = boto.connect_s3(
-            aws_access_key_id = self.access_key,
-            aws_secret_access_key = self.secret_key,
+        self.connection = boto.s3.connection.S3Connection(self.access_key, self.secret_key)
+        
+        #self.connection = boto.connect_s3(
+        #    aws_access_key_id = self.access_key,
+        #    aws_secret_access_key = self.secret_key,
             #host = host,
-            is_secure = False,   #uncomment if not ssl
-            calling_format = boto.s3.connection.OrdinaryCallingFormat()
-        )
+        #    is_secure = False,   #uncomment if not ssl
+        #    calling_format = boto.s3.connection.OrdinaryCallingFormat()
+        #)
+        
         self.localPath = LOCAL_PATH
 
 
