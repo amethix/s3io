@@ -4,7 +4,8 @@ Amazon S3 bucket connector wrapper
 """
 
 import math
-# import sys, os
+# import sys
+import os
 # import getopt
 import boto
 import boto.s3.connection
@@ -122,8 +123,7 @@ class Connector:
 
         source_size = os.stat(local_path).st_size
         chunk_count = int(math.ceil(source_size / float(chunk_size)))
-        local_filename = local_path.split('/')[-1]
-
+        # local_filename = local_path.split('/')[-1]
 
         try:
             bucket = self.connection.get_bucket(bucket)  # select bucket
